@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון דרישות אנרגיה וחלבון</title>
+    <style>
+        :root { --primary: #3498db; --bg: #f4f7f9; --scho: #9b59b6; }
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: var(--bg); padding: 10px; display: flex; justify-content: center; }
+        .app-card { width: 100%; max-width: 500px; background: white; border-radius: 20px; padding: 25px 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        
+        .header { text-align: center; margin-bottom: 25px; }
+        .calc-icon { width: 50px; height: 50px; margin-bottom: 10px; }
+        .header h1 { margin: 0; font-size: 26px; color: #2c3e50; font-weight: 800; }
+        .header p { margin: 0; font-size: 18px; color: #7f8c8d; font-weight: 500; }
+
+        .label-text { display: block; font-weight: bold; margin: 15px 0 5px; color: #34495e; border-right: 4px solid var(--primary); padding-right: 8px; }
+        .gender-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+        .gender-toggle input { display: none; }
+        .gender-toggle label { flex: 1; text-align: center; padding: 12px; border: 2px solid #eee; border-radius: 15px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .gender-toggle input:checked + label { border-color: var(--primary); background: #ebf5fb; color: var(--primary); }
+        
+        input[type="number"], select { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 12px; box-sizing: border-box; font-size: 16px; outline: none; }
+        .factor-box { display: flex; gap: 5px; align-items: center; margin-bottom: 10px; }
+        .btn-row { display: flex; gap: 10px; margin-top: 25px; }
+        .calc-btn { flex: 2; background: var(--primary); color: white; border: none; padding: 16px; border-radius: 14px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .clear-btn { flex: 1; background: #95a5a6; color: white; border: none; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        
+        .results-area { margin-top: 25px; display: none; }
+        .res-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+        .res-table td { padding: 14px; border: 1px solid #eee; text-align: center; border-radius: 12px; vertical-align: middle; }
+        .res-table td:first-child { font-weight: bold; text-align: right; width: 55%; background: #f9f9f9; color: #34495e; font-size: 0.95em; }
+        
+        .val-main { font-weight: bold; font-size: 1.15em; color: #2c3e50; }
+        .val-note { font-size: 0.85em; font-style: italic; color: #7f8c8d; display: block; margin-top: 4px; font-weight: normal; }
+        
+        .scho-link-btn { display: block; width: 100%; background: var(--scho); color: white; text-align: center; padding: 14px; border-radius: 14px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .footer { text-align: center; font-size: 11px; color: #95a5a6; margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px; }
+        .footer span { display: block; margin-top: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="app-card">
+    <div class="header">
+        <svg class="calc-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="6" fill="#3498db"/>
+            <rect x="5" y="5" width="14" height="4" rx="1" fill="white" fill-opacity="0.3"/>
+            <circle cx="7" cy="13" r="1.5" fill="white"/>
+            <circle cx="12" cy="13" r="1.5" fill="white"/>
+            <circle cx="17" cy="13" r="1.5" fill="white"/>
+            <circle cx="7" cy="18" r="1.5" fill="white"/>
+            <circle cx="12" cy="18" r="1.5" fill="white"/>
+            <circle cx="17" cy="18" r="1.5" fill="white"/>
+        </svg>
+        <h1>מחשבון</h1>
+        <p>דרישות אנרגיה וחלבון</p>
+    </div>
+
+    <span class="label-text">מין המטופל/ת</span>
+    <div class="gender-toggle">
+        <input type="radio" name="gender" id="male" value="male" checked>
+        <label for="male">👦 ילד</label>
+        <input type="radio" name="gender" id="female" value="female">
+        <label for="female">👧 ילדה</label>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+        <div style="flex: 1;"><span class="label-text">גיל</span><input type="number" id="ageVal" placeholder="גיל"></div>
+        <div style="flex: 1;"><span class="label-text">יחידות</span><select id="ageUnit"><option value="years">שנים</option>
